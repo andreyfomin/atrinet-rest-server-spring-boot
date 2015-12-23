@@ -1,0 +1,41 @@
+buildscript {
+    repositories {
+        maven { url "http://repo.spring.io/snapshot" }
+        maven { url "http://repo.spring.io/milestone" }
+        maven { url "file:////C:/dev/maven_repo" }
+        maven { url "http://central.maven.org/maven2/" }
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE")
+    }
+}
+
+apply plugin: 'maven'
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'atrinet-rest-server-spring-boot'
+    version =  '0.0.1-SNAPSHOT'
+}
+
+repositories {
+    maven { url "http://repo.spring.io/snapshot" }
+    maven { url "http://repo.spring.io/milestone" }
+    maven { url "file:////D:/maven_repo" }
+    maven { url "http://central.maven.org/maven2" }
+    jcenter()
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-security")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("com.h2database:h2")
+    compile("org.projectlombok:lombok:1.16.4")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("Aspen:bes_service_manager:7.1.0-SNAPSHOT")
+    compile("Aspen:conman:7.1.0-SNAPSHOT")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
