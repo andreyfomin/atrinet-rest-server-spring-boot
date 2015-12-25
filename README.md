@@ -2,13 +2,11 @@
 
 ##1. Get list of all devices.
 ####  PROTOCOL: GET
-[http://localhost:7777/devices/list]
-(http://localhost:7777/devices/list)
+[http://localhost:7777/devices/list](http://localhost:7777/devices/list)
 
 ##2. Add new device.
 ####  PROTOCOL: POST
-[http://localhost:7777/devices/add]
-(http://localhost:7777/devices/add)
+[http://localhost:7777/devices/add](http://localhost:7777/devices/add)
 
 ```
  {
@@ -30,8 +28,7 @@
 
 ##3. Update existing device.
 ####  PROTOCOL: POST
-[http://localhost:7777/devices/update]
-(http://localhost:7777/devices/update)
+[http://localhost:7777/devices/update](http://localhost:7777/devices/update)
 
 ```
  {
@@ -53,8 +50,7 @@
 
 ##4. Remove existing device.
 ####  PROTOCOL: GET
-[http://localhost:7777/devices/remove/{deviceId}]
-(http://localhost:7777/devices/remove/{deviceId})
+[http://localhost:7777/devices/remove/{deviceId}](http://localhost:7777/devices/remove/{deviceId})
 
 ```
  {
@@ -78,19 +74,16 @@
 
 ##1. Gives very reassuring {"status":"UP"} and it's used for health checks
 ####  PROTOCOL: GET
-[http://localhost:7777/health]
-(http://localhost:7777/health)
+[http://localhost:7777/health](http://localhost:7777/health)
 
 ##2. it's used to read metrics collected by application, and by default returns a list of "system" metrics
 ####  PROTOCOL: GET
-[http://localhost:7777/metrics]
-(http://localhost:7777/metrics)
+[http://localhost:7777/metrics](http://localhost:7777/metrics)
 
 
 ##1. Get list of all devices.
 ####  PROTOCOL: GET
-[http://localhost:7777/devices/list]
-(http://localhost:7777/devices/list)
+[http://localhost:7777/devices/list](http://localhost:7777/devices/list)
 
 
 ## List of useful sites for client development project
