@@ -1,6 +1,5 @@
 package com.atrinet.web.controller;
 
-import com.atrica.infra.model.primitives.ModelElement;
 import com.atrinet.service.DeviceManager;
 import com.atrinet.service.model.Device;
 import com.atrinet.web.messages.ResponseMessage;
@@ -27,6 +26,24 @@ public class DeviceController {
         return deviceManager.getDevices();
     }
 
+
+    @RequestMapping(value = "/id/{deviceId}", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public
+    @ResponseBody
+    List<Device> getDeviceById(@PathVariable Integer deviceId) {
+        return deviceManager.getDeviceById(deviceId);
+    }
+
+    @RequestMapping(value = "/name/{deviceName}", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public
+    @ResponseBody
+    List<Device> getDeviceByName(@PathVariable String deviceName) {
+        return deviceManager.getDeviceByName(deviceName);
+    }
+
+
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public
@@ -35,6 +52,16 @@ public class DeviceController {
         deviceManager.updateDevice(device);
         return new ResponseMessage();
     }
+
+
+    @RequestMapping(value = "/ip/{deviceIp:.+}", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public
+    @ResponseBody
+    List<Device> getDeviceByIp(@PathVariable String deviceIp) {
+        return deviceManager.getDeviceByIp(deviceIp);
+    }
+
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
@@ -65,5 +92,6 @@ public class DeviceController {
         responseMessage.setMessage(ex.getMessage());
         return responseMessage;
     }
+
 
 }

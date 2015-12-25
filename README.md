@@ -95,22 +95,13 @@
 
 ## List of useful sites for client development project
 
-* [coffeescript](http://coffeescript.org/)
-* [javascript to coffee script](http://js2.coffee/)
-* [less](http://lesscss.org/)
-* [css to less](http://css2less.cc/)
-* [Jade](http://jade-lang.com/) - Jade is a terse language for writing HTML templates.
-* [Modernizr](http://modernizr.com/) - JavaScript library that detects HTML5 and CSS3 features in the user’s browser.
-* [DHTMLX](http://dhtmlx.com/) - set of useful js elements (tables, trees, menu).
-* [sugarjs](http://sugarjs.com/) - Javascript library that extends native objects with helpful methods.
-* [DataTales](http://www.datatables.net/) - DataTables is a plug-in for the jQuery Javascript library.
-* [Jeditable](http://www.appelsiini.net/projects/jeditable) - Edit in place (inline edit) plugin with possibility to create your own input types.
-* [AngularJS](https://angularjs.org/) - HTML enhanced for web apps.
-* [AngularJS Tutorial](https://docs.angularjs.org/tutorial) - A great way to get introduced to AngularJS
-* [Font Awesome](http://fontawesome.io/) - Gives you scalable vector icons that can instantly be customized.
-* [Bootstrap](http://getbootstrap.com/) - The most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.
-* [html5test](http://html5test.com/) - How well does your browser support html5?
-* [w3schools](http://www.w3schools.com/) - Learn how to create a website on your own computer.
+* [spring-boot](http://projects.spring.io/spring-boot/)
+* [spring-boot reference](http://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/)
+* [spring projects](http://spring.io/projects)
+* [spring-framework](http://projects.spring.io/spring-framework/)
+* [gradle docs](https://docs.gradle.org/current/release-notes)
+* [gradle eclipse plugin](https://docs.gradle.org/current/userguide/eclipse_plugin.html)
+
 
 
 ## README format

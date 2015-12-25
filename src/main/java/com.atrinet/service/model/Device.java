@@ -8,17 +8,14 @@ import lombok.Data;
 @Data
 public class Device {
 
-    private Long id;
+    private Integer id;
     private String status;
     private String name;
     private String ipAdress;
     private String Type;
     private String location;
     private String Contact;
-    private String serialNumber;
-    private String barCode;
-    private String cleiCode;
-    private String usiCode;
     private String swVersion;
     private String hwVersion;
+    private String sysOID;
 }

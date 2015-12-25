@@ -1,13 +1,20 @@
 package com.atrinet.service;
 
-import com.atrica.apps.model.esu.A2200DeviceImpl;
-import com.atrica.infra.model.primitives.ModelElement;
+import com.atrinet.api.YP;
+import com.atrinet.infra.rmi.RMIHelper;
+import com.atrinet.model.generic.device.dto.GenericDeviceDto;
 import com.atrinet.service.model.Device;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+import java.util.stream.Collectors;
 
 
 /**
@@ -24,62 +31,37 @@ public class DeviceManager {
     Lock r = lock.readLock();
     Lock w = lock.writeLock();
 
+    Class<GenericDeviceDto> clazz = GenericDeviceDto.class;
 
-    public DeviceManager() {
+//    @Value("${artinet.remote.ip}")
+//    private String rmiServerIp;
 
-//        ModelElement device = new A2200DeviceImpl(1);
-        Device device = new Device();
+    @Autowired
+    public DeviceManager(
+            @Value("${artinet.remote.ip}")
+            String rmiServerIp) {
 
-        device.setId(1l);
-        device.setStatus("OK");
-        device.setName("20.25.30.3");
-        device.setIpAdress("20.25.30.3");
-        device.setType("A-4100");
-        device.setLocation("F2");
-        device.setContact("efi");
-        device.setSerialNumber("N/A");
-        device.setBarCode("N/A");
-        device.setCleiCode("N/A");
-        device.setUsiCode("N/A");
-        device.setSwVersion("5.0.4.b");
-        device.setHwVersion("14.00");
-
-        devices.put(device.getId(), device);
-
-        device = new Device();
-
-        device.setId(2l);
-        device.setStatus("Disconnected");
-        device.setName("11.11.70.11");
-        device.setIpAdress("11.11.70.11");
-        device.setType("A-2100");
-        device.setLocation("F2");
-        device.setContact("efi");
-        device.setSerialNumber("0001DAG001576F");
-        device.setBarCode("ATC2000100000AA");
-        device.setCleiCode("N/A");
-        device.setUsiCode("N/A");
-        device.setSwVersion("4.0.2.l");
-        device.setHwVersion("AG");
-
-        devices.put(device.getId(), device);
+        RMIHelper.setAsIp(rmiServerIp);
+        RMIHelper.ignoreRmiStubs();
 
     }
 
     public List<Device> getDevices() {
-        r.lock();
-        try {
-            return new ArrayList<>(devices.values());
-        } finally {
-            r.unlock();
-        }
+
+        List<Device> devList = new ArrayList<>();
+
+        List<GenericDeviceDto> dtos = YP.dataInventory.findAll(clazz);
+
+        devList.addAll(dtos.stream().map(this::dtoToDevice).collect(Collectors.toList()));
+
+        return devList;
 
     }
 
     public void addDevice(Device device) {
         w.lock();
         try {
-            devices.put(device.getId(), device);
+//            devices.put(device.getId(), device);
         } finally {
             w.unlock();
         }
@@ -97,10 +79,60 @@ public class DeviceManager {
     public void updateDevice(Device device) {
         w.lock();
         try {
-            devices.put(device.getId(), device);
+//            devices.put(device.getId(), device);
         } finally {
             w.unlock();
         }
     }
 
+    public List<Device> getDeviceById(Integer deviceId) {
+
+        List<Device> devList = new ArrayList<>();
+        GenericDeviceDto deviceDto = YP.dataInventory.findById(clazz, deviceId);
+
+        if (deviceDto != null)
+            devList.add(dtoToDevice(deviceDto));
+
+        return devList;
+    }
+
+    public List<Device> getDeviceByName(String deviceName) {
+
+        List<Device> devList = new ArrayList<>();
+        GenericDeviceDto deviceDto = YP.dataInventory.findByName(clazz, deviceName);
+
+        if (deviceDto != null)
+            devList.add(dtoToDevice(deviceDto));
+
+        return devList;
+    }
+
+    public List<Device> getDeviceByIp(String deviceIp) {
+        List<Device> devList = new ArrayList<>();
+
+        List<GenericDeviceDto> dtos = YP.dataInventory.findAll(clazz);
+
+        for (GenericDeviceDto dto : dtos) {
+            if (dto.getIpAddress().equals(deviceIp)) {
+                devList.add(dtoToDevice(dto));
+            }
+        }
+        return devList;
+    }
+
+    private Device dtoToDevice(GenericDeviceDto deviceDto) {
+        Device device = new Device();
+
+        device.setId(deviceDto.getId());
+        device.setIpAdress(deviceDto.getIpAddress());
+        device.setName(deviceDto.getDnsName());
+        //device.setType(deviceDto.getDeviceTypeDto().getDisplayName());
+        device.setType(deviceDto.getDeviceType().name());
+        device.setSysOID(deviceDto.getSysOID());
+        device.setSwVersion(deviceDto.getSwVersion());
+        device.setStatus(deviceDto.getExtStatus().name());
+
+        return device;
+
+    }
 }
