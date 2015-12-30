@@ -94,6 +94,8 @@
 * [spring-framework](http://projects.spring.io/spring-framework/)
 * [gradle docs](https://docs.gradle.org/current/release-notes)
 * [gradle eclipse plugin](https://docs.gradle.org/current/userguide/eclipse_plugin.html)
+* [Lombok eclipse plugin](https://projectlombok.org/download.html)
+
 
 
 

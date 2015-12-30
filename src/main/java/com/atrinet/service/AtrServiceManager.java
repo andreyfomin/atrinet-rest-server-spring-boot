@@ -2,11 +2,9 @@ package com.atrinet.service;
 
 import com.atrinet.api.YP;
 import com.atrinet.infra.rmi.RMIHelper;
-import com.atrinet.model.generic.device.dto.LinkDto;
-import com.atrinet.netace.managers.IServiceImpl;
+import com.atrinet.model.services.dto.CliService;
 import com.atrinet.service.model.AtrService;
 import com.atrinet.service.model.Device;
-import com.atrinet.service.model.Link;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -33,7 +31,7 @@ public class AtrServiceManager {
     Lock r = lock.readLock();
     Lock w = lock.writeLock();
 
-    Class<IServiceImpl> clazz = IServiceImpl.class;
+    Class<CliService> clazz = CliService.class;
 
     @Autowired
     public AtrServiceManager(
@@ -44,15 +42,13 @@ public class AtrServiceManager {
         RMIHelper.ignoreRmiStubs();
     }
 
-    public List<AtrService> geServises() {
+    public List<AtrService> geServices() {
 
         List<AtrService> serviceList = new ArrayList<>();
 
-        List<IServiceImpl> dtos = YP.dataInventory.findAll(clazz);
+        List<CliService> cliServices = YP.dataInventory.findAll(clazz);
 
-        for (IServiceImpl iService : dtos) {
-            serviceList.add(dtoToService(iService));
-        }
+        for (CliService iService : cliServices) serviceList.add(dtoToService(iService));
 
         return serviceList;
 
@@ -62,12 +58,24 @@ public class AtrServiceManager {
 
         List<AtrService> serviceList = new ArrayList<>();
 
+        CliService cliService = YP.dataInventory.findById(clazz, serviceId);
+
+        if (cliService != null)
+            serviceList.add(dtoToService(cliService));
+
         return serviceList;
     }
 
-    public List<AtrService> getServiceByExternalId(String externalId) {
+    public List<AtrService> getServiceByExternalId(Integer externalId) {
 
         List<AtrService> serviceList = new ArrayList<>();
+
+        List<CliService> cliServices = YP.dataInventory.findAll(clazz);
+
+        for (CliService iService : cliServices) {
+            if (iService.getExternalId() == externalId.intValue())
+                serviceList.add(dtoToService(iService));
+        }
 
         return serviceList;
     }
@@ -78,29 +86,30 @@ public class AtrServiceManager {
         return serviceList;
     }
 
-
     public List<AtrService> getServiceByOrderName(String orderName) {
         List<AtrService> serviceList = new ArrayList<>();
 
         return serviceList;
     }
 
-    public List<AtrService> getServiceByOperatorName (String operatorName) {
+    public List<AtrService> getServiceByOperatorName(String operatorName) {
         List<AtrService> serviceList = new ArrayList<>();
 
         return serviceList;
     }
-
-    private AtrService dtoToService(IServiceImpl iService) {
+    private AtrService dtoToService(CliService iService) {
 
         AtrService atrService = new AtrService();
-//        atrService.setId(iService.);
-//        atrService.setName(linkDto.getName()); // name
-//        atrService.setStatus(linkDto.getStatus().name());//status
-//        atrService.setPortId1(linkDto.getPortId1()); //
-//        atrService.setPortId2(linkDto.getPortId2()); //
+        atrService.setId(iService.getId());
+        atrService.setName(iService.getName());
+        atrService.setExternalId(iService.getExternalId());
+        atrService.setOrderNumber(iService.getOrderNumber());
+        atrService.setOperatorName(iService.getOperatorName());
+        atrService.setOperationalStatus(iService.getOperStatus().name());
+        atrService.setConfigStatus(iService.getConfigStatus().name());
+        atrService.setCreationTime(iService.getCreationTime());
+        atrService.setDeviceIP(iService.getDeviceIPs());
 
         return atrService;
     }
-
 }

@@ -26,7 +26,7 @@ public class ServiceController {
     public
     @ResponseBody
     List<AtrService> getDevices() {
-        return serviceManager.geServises();
+        return serviceManager.geServices();
     }
 
 

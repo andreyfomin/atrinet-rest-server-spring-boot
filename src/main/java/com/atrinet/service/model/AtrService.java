@@ -12,4 +12,8 @@ public class AtrService {
     private String name;
     private String orderNumber;
     private String operatorName;
+    private String operationalStatus;
+    private String configStatus;
+    private Long   creationTime;
+    private String deviceIP;
 }
