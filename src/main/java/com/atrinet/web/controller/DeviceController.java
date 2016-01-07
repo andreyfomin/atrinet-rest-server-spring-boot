@@ -26,7 +26,6 @@ public class DeviceController {
         return deviceManager.getDevices();
     }
 
-
     @RequestMapping(value = "/id/{deviceId}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public
@@ -43,17 +42,6 @@ public class DeviceController {
         return deviceManager.getDeviceByName(deviceName);
     }
 
-
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.OK)
-    public
-    @ResponseBody
-    ResponseMessage updateDevices(@RequestBody Device device) {
-        deviceManager.updateDevice(device);
-        return new ResponseMessage();
-    }
-
-
     @RequestMapping(value = "/ip/{deviceIp:.+}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public
@@ -62,24 +50,33 @@ public class DeviceController {
         return deviceManager.getDeviceByIp(deviceIp);
     }
 
+//    @RequestMapping(value = "/update", method = RequestMethod.POST)
+//    @ResponseStatus(HttpStatus.OK)
+//    public
+//    @ResponseBody
+//    ResponseMessage updateDevices(@RequestBody Device device) {
+//        deviceManager.updateDevice(device);
+//        return new ResponseMessage();
+//    }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.OK)
-    public
-    @ResponseBody
-    ResponseMessage addDevice(@RequestBody Device device) {
-        deviceManager.addDevice(device);
-        return new ResponseMessage();
-    }
 
-    @RequestMapping(value = "/remove/{deviceId}", method = RequestMethod.GET)
-    @ResponseStatus(HttpStatus.OK)
-    public
-    @ResponseBody
-    ResponseMessage removeDevice(@PathVariable Long deviceId) {
-        deviceManager.removeDevice(deviceId);
-        return new ResponseMessage();
-    }
+//    @RequestMapping(value = "/add", method = RequestMethod.POST)
+//    @ResponseStatus(HttpStatus.OK)
+//    public
+//    @ResponseBody
+//    ResponseMessage addDevice(@RequestBody Device device) {
+//        deviceManager.addDevice(device);
+//        return new ResponseMessage();
+//    }
+//
+//    @RequestMapping(value = "/remove/{deviceId}", method = RequestMethod.GET)
+//    @ResponseStatus(HttpStatus.OK)
+//    public
+//    @ResponseBody
+//    ResponseMessage removeDevice(@PathVariable Long deviceId) {
+//        deviceManager.removeDevice(deviceId);
+//        return new ResponseMessage();
+//    }
 
     @ResponseStatus(value = HttpStatus.EXPECTATION_FAILED)
     @ExceptionHandler(Exception.class)
@@ -92,6 +89,5 @@ public class DeviceController {
         responseMessage.setMessage(ex.getMessage());
         return responseMessage;
     }
-
 
 }

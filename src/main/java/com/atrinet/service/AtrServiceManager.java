@@ -4,17 +4,12 @@ import com.atrinet.api.YP;
 import com.atrinet.infra.rmi.RMIHelper;
 import com.atrinet.model.services.dto.CliService;
 import com.atrinet.service.model.AtrService;
-import com.atrinet.service.model.Device;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 
 /**
@@ -22,14 +17,6 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  */
 @Service
 public class AtrServiceManager {
-
-    //    List<ModelElement> devices = new ArrayList<>();
-    Map<Long, Device> devices = new HashMap<>();
-
-    ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
-
-    Lock r = lock.readLock();
-    Lock w = lock.writeLock();
 
     Class<CliService> clazz = CliService.class;
 
@@ -89,14 +76,29 @@ public class AtrServiceManager {
     public List<AtrService> getServiceByOrderName(String orderName) {
         List<AtrService> serviceList = new ArrayList<>();
 
+        List<CliService> cliServices = YP.dataInventory.findAll(clazz);
+
+        for (CliService iService : cliServices) {
+            if (iService.getOrderNumber() == orderName)
+                serviceList.add(dtoToService(iService));
+        }
+
         return serviceList;
     }
 
     public List<AtrService> getServiceByOperatorName(String operatorName) {
         List<AtrService> serviceList = new ArrayList<>();
 
+        List<CliService> cliServices = YP.dataInventory.findAll(clazz);
+
+        for (CliService iService : cliServices) {
+            if (iService.getOperatorName().equals(operatorName))
+                serviceList.add(dtoToService(iService));
+        }
+
         return serviceList;
     }
+
     private AtrService dtoToService(CliService iService) {
 
         AtrService atrService = new AtrService();

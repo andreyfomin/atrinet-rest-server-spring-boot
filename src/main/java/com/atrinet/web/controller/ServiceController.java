@@ -18,14 +18,12 @@ import java.util.List;
 public class ServiceController {
 
     @Autowired
-
-
     AtrServiceManager serviceManager;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public
     @ResponseBody
-    List<AtrService> getDevices() {
+    List<AtrService> geServices() {
         return serviceManager.geServices();
     }
 
@@ -34,10 +32,41 @@ public class ServiceController {
     @ResponseStatus(HttpStatus.OK)
     public
     @ResponseBody
-    List<AtrService> getDeviceById(@PathVariable Integer serviceId) {
+    List<AtrService> getServiceById(@PathVariable Integer serviceId) {
         return serviceManager.getServiceById(serviceId);
     }
 
+    @RequestMapping(value = "/external/id/{serviceExternalId}", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public
+    @ResponseBody
+    List<AtrService> getServiceByExternalId(@PathVariable Integer serviceExternalId) {
+        return serviceManager.getServiceByExternalId(serviceExternalId);
+    }
+
+    @RequestMapping(value = "/description/{description}", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public
+    @ResponseBody
+    List<AtrService> getServiceByDescription(@PathVariable String description) {
+        return serviceManager.getServiceByDescription(description);
+    }
+
+    @RequestMapping(value = "/order/name/{orderName}", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public
+    @ResponseBody
+    List<AtrService> getServiceByOrderName(@PathVariable String orderName) {
+        return serviceManager.getServiceByOrderName(orderName);
+    }
+
+    @RequestMapping(value = "/operator/name/{operatorName}", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public
+    @ResponseBody
+    List<AtrService> getServiceByOperatorName(@PathVariable String operatorName) {
+        return serviceManager.getServiceByOperatorName(operatorName);
+    }
 
     @ResponseStatus(value = HttpStatus.EXPECTATION_FAILED)
     @ExceptionHandler(Exception.class)

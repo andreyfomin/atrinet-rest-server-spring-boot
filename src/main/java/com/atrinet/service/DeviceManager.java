@@ -9,11 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.stream.Collectors;
 
 
@@ -23,18 +19,7 @@ import java.util.stream.Collectors;
 @Service
 public class DeviceManager {
 
-    //    List<ModelElement> devices = new ArrayList<>();
-    Map<Long, Device> devices = new HashMap<>();
-
-    ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
-
-    Lock r = lock.readLock();
-    Lock w = lock.writeLock();
-
     Class<GenericDeviceDto> clazz = GenericDeviceDto.class;
-
-//    @Value("${artinet.remote.ip}")
-//    private String rmiServerIp;
 
     @Autowired
     public DeviceManager(
@@ -43,7 +28,6 @@ public class DeviceManager {
 
         RMIHelper.setAsIp(rmiServerIp);
         RMIHelper.ignoreRmiStubs();
-
     }
 
     public List<Device> getDevices() {
@@ -56,33 +40,6 @@ public class DeviceManager {
 
         return devList;
 
-    }
-
-    public void addDevice(Device device) {
-        w.lock();
-        try {
-//            devices.put(device.getId(), device);
-        } finally {
-            w.unlock();
-        }
-    }
-
-    public void removeDevice(Long deviceId) {
-        w.lock();
-        try {
-            devices.remove(deviceId);
-        } finally {
-            w.unlock();
-        }
-    }
-
-    public void updateDevice(Device device) {
-        w.lock();
-        try {
-//            devices.put(device.getId(), device);
-        } finally {
-            w.unlock();
-        }
     }
 
     public List<Device> getDeviceById(Integer deviceId) {
@@ -126,13 +83,11 @@ public class DeviceManager {
         device.setId(deviceDto.getId());
         device.setIpAdress(deviceDto.getIpAddress());
         device.setName(deviceDto.getDnsName());
-        //device.setType(deviceDto.getDeviceTypeDto().getDisplayName());
         device.setType(deviceDto.getDeviceType().name());
         device.setSysOID(deviceDto.getSysOID());
         device.setSwVersion(deviceDto.getSwVersion());
         device.setStatus(deviceDto.getExtStatus().name());
 
         return device;
-
     }
 }
