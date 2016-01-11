@@ -172,6 +172,10 @@ Example http://localhost:7777/services/operator/name/xxx
 where xxx is service operator name.
 ```
 
+# Java Melody Monitoring
+
+[http://localhost:7777/monitoring](http://localhost:7777/monitoring)
+
 # Atrinet REST Monitoring
 
 ##1. Gives very reassuring {"status":"UP"} and it's used for health checks
