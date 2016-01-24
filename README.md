@@ -198,6 +198,7 @@ where xxx is service operator name.
 * [spring-boot reference](http://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/)
 * [spring projects](http://spring.io/projects)
 * [spring-framework](http://projects.spring.io/spring-framework/)
+* [spring scheduling](https://spring.io/guides/gs/scheduling-tasks/)
 * [gradle docs](https://docs.gradle.org/current/release-notes)
 * [gradle eclipse plugin](https://docs.gradle.org/current/userguide/eclipse_plugin.html)
 * [Lombok eclipse plugin](https://projectlombok.org/download.html)

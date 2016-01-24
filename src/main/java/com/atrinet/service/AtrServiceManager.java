@@ -1,6 +1,8 @@
 package com.atrinet.service;
 
+import com.atrica.netmanager.AtricaServer;
 import com.atrinet.api.YP;
+import com.atrinet.infra.RTExc;
 import com.atrinet.infra.rmi.RMIHelper;
 import com.atrinet.model.services.dto.CliService;
 import com.atrinet.service.model.AtrService;
@@ -21,13 +23,7 @@ public class AtrServiceManager {
     Class<CliService> clazz = CliService.class;
 
     @Autowired
-    public AtrServiceManager(
-            @Value("${artinet.remote.ip}")
-            String rmiServerIp) {
-
-        RMIHelper.setAsIp(rmiServerIp);
-        RMIHelper.ignoreRmiStubs();
-    }
+    AtrServiceConManager atrServiceConManager;
 
     public List<AtrService> geServices() {
 

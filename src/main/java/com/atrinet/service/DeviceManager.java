@@ -1,11 +1,9 @@
 package com.atrinet.service;
 
 import com.atrinet.api.YP;
-import com.atrinet.infra.rmi.RMIHelper;
 import com.atrinet.model.generic.device.dto.GenericDeviceDto;
 import com.atrinet.service.model.Device;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,13 +20,7 @@ public class DeviceManager {
     Class<GenericDeviceDto> clazz = GenericDeviceDto.class;
 
     @Autowired
-    public DeviceManager(
-            @Value("${artinet.remote.ip}")
-            String rmiServerIp) {
-
-        RMIHelper.setAsIp(rmiServerIp);
-        RMIHelper.ignoreRmiStubs();
-    }
+    AtrServiceConManager atrServiceConManager;
 
     public List<Device> getDevices() {
 

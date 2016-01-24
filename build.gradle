@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:+")
     }
 }
 
@@ -59,22 +59,25 @@ dependencies {
     compile("org.projectlombok:lombok:1.16.4")
     compile("log4j:log4j")
     compile("net.bull.javamelody:javamelody-core:1.58.0")
-    compile("Aspen:bes_service_manager:7.1.0-SNAPSHOT")
-    compile("Aspen:conman:5.0.7-SNAPSHOT")
+//    compile("Aspen:bes_service_manager:7.1.0-SNAPSHOT")
+    compile("Aspen:conman:7.1.0-SNAPSHOT")
 
 
-    task ('fff',dependsOn:jar) << {
+    task ('atrine-rest-server') << {
         javaexec {
-            main="-jar";
+            jvmArgs = [
+                    "-verbose:class",
+                    "-Dartinet.remote.ip=172.16.150.4"
+            ]
+            main="-jar"
             args = [
-                    "D:/repos/atrinet-rest-server-spring-boot/build/libs/atrinet-rest-server-spring-boot-0.0.1-SNAPSHOT.jar",
-                    "--artinet.remote.ip=1.2.3.4"
+                    "${project.buildDir}/libs/${project.name}-0.0.1-SNAPSHOT.jar"
             ]
         }
     }
 
     task('hello') <<
             {
-                println "hello"
+                println "hello ${project.buildDir}/libs/${project.name}-0.0.1-SNAPSHOT.jar"
             }
 }
