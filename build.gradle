@@ -66,7 +66,7 @@ dependencies {
     task ('atrine-rest-server') << {
         javaexec {
             jvmArgs = [
-                    "-verbose:class",
+//                   "-verbose:class",
                     "-Dartinet.remote.ip=172.16.150.4"
             ]
             main="-jar"

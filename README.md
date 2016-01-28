@@ -203,7 +203,17 @@ where xxx is service operator name.
 * [gradle eclipse plugin](https://docs.gradle.org/current/userguide/eclipse_plugin.html)
 * [Lombok eclipse plugin](https://projectlombok.org/download.html)
 
+## How to build and run
 
+1. From project dir run command `gradlew build`
+2. After build you will get `.\atrinet-rest-server-spring-boot\build\libs\atrinet-rest-server-spring-boot-0.0.1-SNAPSHOT.jar` file.
+3. Run jar file with the next command `java -Dartinet.remote.ip=172.16.150.4 -jar atrinet-rest-server-spring-boot-0.0.1-SNAPSHOT.jar` where `-Dartinet.remote.ip=172.16.150.4` is IP of remote server.
+4. Before running any REST command from the browser you must login as user: `user` and password: `123456`.
+5. It is better to use Chrome plugin [Advanced REST Client](https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo?utm_source=chrome-app-launcher-info-dialog) for running REST commands.
+
+Advanced REST Client History example: 
+
+![alt text](./DOC/arc1.png "Logo Title Text 1")
 
 
 ## README format
