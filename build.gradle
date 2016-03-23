@@ -23,7 +23,7 @@ jar {
 repositories {
     maven { url "http://repo.spring.io/snapshot" }
     maven { url "http://repo.spring.io/milestone" }
-    maven { url "file:////D:/maven_repo" }
+    maven { url "file:////D:/maven3_repo" }
     maven { url "http://central.maven.org/maven2" }
     jcenter()
 }
@@ -63,7 +63,7 @@ dependencies {
     compile("Aspen:conman:7.1.0-SNAPSHOT")
 
 
-    task ('atrine-rest-server') << {
+    task ('atrinet-rest-server') << {
         javaexec {
             jvmArgs = [
 //                   "-verbose:class",
