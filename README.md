@@ -4,34 +4,60 @@
 ####  PROTOCOL: GET
 [http://localhost:7777/devices/list](http://localhost:7777/devices/list)
 
-##2. Get devise by id.
+```
+[
+    {
+        "id": 18
+        "status": "NORMAL"
+        "name": "Weehawken-300-7060-2"
+        "ipAdress": "10.220.154.67"
+        "location": null
+        "swVersion": "11.2.3 C001"
+        "hwVersion": null
+        "sysOID": "1.3.6.1.4.1.18070.2.2"
+        "type": "GENERIC_SNMP_DEVICE"
+        "contact": null
+    },
+    {
+        "id": 19
+        "status": "NORMAL"
+        "name": "Secaucus-755-PVX3-4"
+        "ipAdress": "10.220.154.66"
+        "location": null
+        "swVersion": "11.2.3 C001"
+        "hwVersion": null
+        "sysOID": "1.3.6.1.4.1.18070.2.2"
+        "type": "GENERIC_SNMP_DEVICE"
+        "contact": null
+    }
+]
+```
+
+##2. Get device by id.
 ####  PROTOCOL: GET
 [http://localhost:7777/devices/id/{device id}](http://localhost:7777/devices/id/100)
 
 ```
-Example http://localhost:7777/devices/id/100
+Example http://localhost:7777/devices/id/19
 where 100 is device id.
 ```
 
 ```
  {
-    "id": 3,
-    "status": "OK",
-    "name": "20.25.30.3",
-    "ipAdress": "20.25.30.3",
-    "location": "F2",
-    "serialNumber": "N/A",
-    "barCode": "N/A",
-    "cleiCode": "N/A",
-    "usiCode": "N/A",
-    "swVersion": "5.0.4.b",
-    "hwVersion": "14.00",
-    "type": "A-4100",
-    "contact": "efi"
+    "id": 19
+    "status": "NORMAL"
+    "name": "Secaucus-755-PVX3-4"
+    "ipAdress": "10.220.154.66"
+    "location": null
+    "swVersion": "11.2.3 C001"
+    "hwVersion": null
+    "sysOID": "1.3.6.1.4.1.18070.2.2"
+    "type": "GENERIC_SNMP_DEVICE"
+    "contact": null
 }
 ```
 
-##3. Get devise by IP Address.
+##3. Get device by IP Address.
 ####  PROTOCOL: GET
 [http://localhost:7777/devices/ip/{ip address}](http://localhost:7777/devices/ip/10.20.30.48)
 
@@ -59,7 +85,7 @@ where 10.20.30.48 is device ip address.
 ```
 
 
-##4. Get devise by name.
+##4. Get device by name.
 ####  PROTOCOL: GET
 [http://localhost:7777/devices/name/{device name}](http://localhost:7777/devices/name/as-800)
 
@@ -103,12 +129,12 @@ where as-800 is device name.
       "status": "TOPO_CREATED"
    },
    {
-   "id": 169
-   "name": "10.220.152.90:TenGigE 1/9/1-10.220.152.90:TenGigE 1/19/1"
-   "ipAddress": null
-   "portId1": 129
-   "portId2": 136
-   "status": "TOPO_CREATED"
+       "id": 169
+       "name": "10.220.152.90:TenGigE 1/9/1-10.220.152.90:TenGigE 1/19/1"
+       "ipAddress": null
+       "portId1": 129
+       "portId2": 136
+       "status": "TOPO_CREATED"
    }
 ]
 ```
@@ -143,6 +169,7 @@ where 10.20.30.48 is link ip address.
 ```
 
 
+
 ##4. Get link by name.
 ####  PROTOCOL: GET
 [http://localhost:7777/links/name/{device name}](http://localhost:7777/links/name/as-800)
@@ -158,24 +185,66 @@ where as-800 is link name.
 ####  PROTOCOL: GET
 [http://localhost:7777/services/list](http://localhost:7777/services/list)
 
+```
+[
+    {
+        "id": 10002
+        "externalId": 0
+        "name": "test_e-line"
+        "orderNumber": null
+        "operatorName": "admin"
+        "operationalStatus": "NOT_SET"
+        "configStatus": "MISMATCH"
+        "creationTime": 1453416667420
+        "deviceIP": "10.220.152.28, 10.220.152.29"
+    },
+    {
+        "id": 10003
+        "externalId": 0
+        "name": "test_e-line_Copy1"
+        "orderNumber": null
+        "operatorName": "admin"
+        "operationalStatus": "NOT_SET"
+        "configStatus": "MISMATCH"
+        "creationTime": 1453416976443
+        "deviceIP": "10.220.152.28, 10.220.152.29"
+    }
+]
+```
+
 ##2. Get services by id.
 ####  PROTOCOL: GET
 [http://localhost:7777/services/id/{services id}](http://localhost:7777/services/id/100)
 
 ```
-Example http://localhost:7777/services/id/100
-where 100 is service id.
+Example http://localhost:7777/services/id/10003
+where 10003 is service id.
 ```
+
+```
+ {
+    "id": 10003
+    "externalId": 0
+    "name": "test_e-line_Copy1"
+    "orderNumber": null
+    "operatorName": "admin"
+    "operationalStatus": "NOT_SET"
+    "configStatus": "MISMATCH"
+    "creationTime": 1453416976443
+    "deviceIP": "10.220.152.28, 10.220.152.29"
+    }
+```
+
+
 
 ##3. Get service by external id.
 ####  PROTOCOL: GET
 [http://localhost:7777/services/external/id/{serviceExternalId}](http://localhost:7777/services/external/id/100)
 
 ```
-Example http://localhost:7777/services/external/id/100
-where 100 is service external id.
+Example http://localhost:7777/services/external/id/10002
+where 10002 is service external id.
 ```
-
 
 ##4. Get service by description.
 ####  PROTOCOL: GET
