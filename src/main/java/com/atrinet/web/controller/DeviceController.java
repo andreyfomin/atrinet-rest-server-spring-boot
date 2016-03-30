@@ -2,6 +2,7 @@ package com.atrinet.web.controller;
 
 import com.atrinet.service.DeviceManager;
 import com.atrinet.service.model.Device;
+import com.atrinet.service.model.EdgeDevice;
 import com.atrinet.web.messages.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,14 @@ public class DeviceController {
     @ResponseBody
     List<Device> getDeviceById(@PathVariable Integer deviceId) {
         return deviceManager.getDeviceById(deviceId);
+    }
+
+    @RequestMapping(value = "/service/edge/id/{serviceId}", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public
+    @ResponseBody
+    List<EdgeDevice> getServiceEdgeDevices(@PathVariable Integer serviceId) {
+        return deviceManager.getServiceEdgeDevices(serviceId);
     }
 
     @RequestMapping(value = "/name/{deviceName}", method = RequestMethod.GET)

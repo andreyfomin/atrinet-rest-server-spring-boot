@@ -2,7 +2,9 @@ package com.atrinet.service;
 
 import com.atrinet.api.YP;
 import com.atrinet.model.generic.device.dto.GenericDeviceDto;
+import com.atrinet.model.services.dto.EdgeDeviceDto;
 import com.atrinet.service.model.Device;
+import com.atrinet.service.model.EdgeDevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +34,18 @@ public class DeviceManager {
 
         return devList;
 
+    }
+
+    public List<EdgeDevice> getServiceEdgeDevices(Integer serviceId) {
+
+        List<EdgeDevice> devList = new ArrayList<>();
+
+        List<EdgeDeviceDto> edgeDevices = YP.dataInventory.getServiceEdgeDevices(serviceId);
+
+        for (EdgeDeviceDto edgeDeviceDto : edgeDevices) {
+            devList.add(dtoToEdgeDeviceDto(edgeDeviceDto));
+        }
+        return devList;
     }
 
     public List<Device> getDeviceById(Integer deviceId) {
@@ -79,6 +93,20 @@ public class DeviceManager {
         device.setSysOID(deviceDto.getSysOID());
         device.setSwVersion(deviceDto.getSwVersion());
         device.setStatus(deviceDto.getExtStatus().name());
+
+        return device;
+    }
+
+    private EdgeDevice dtoToEdgeDeviceDto(EdgeDeviceDto deviceDto) {
+        EdgeDevice device = new EdgeDevice();
+
+        device.setId(deviceDto.getDevice().getId());
+        device.setIpAdress(deviceDto.getDevice().getIpAddress());
+        device.setName(deviceDto.getDevice().getDnsName());
+        device.setType(deviceDto.getDevice().getDeviceType().name());
+        device.setSysOID(deviceDto.getDevice().getSysOID());
+        device.setSwVersion(deviceDto.getDevice().getSwVersion());
+        device.setStatus(deviceDto.getDevice().getExtStatus().name());
 
         return device;
     }

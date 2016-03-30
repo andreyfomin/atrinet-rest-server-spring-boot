@@ -1,6 +1,15 @@
 # Atrinet REST Device API
 
-##1. Get list of all devices.
+##1. Get EdgeDevice by service id.
+####  PROTOCOL: GET
+[http://localhost:7777/devices/service/edge/{serviceId}](http://localhost:7777/devices/service/edge/id/100)
+
+```
+Example http://localhost:7777/devices//service/edge/id/100
+where 100 is service id.
+```
+
+##2. Get list of all devices.
 ####  PROTOCOL: GET
 [http://localhost:7777/devices/list](http://localhost:7777/devices/list)
 
@@ -33,7 +42,7 @@
 ]
 ```
 
-##2. Get device by id.
+##2.1. Get device by id.
 ####  PROTOCOL: GET
 [http://localhost:7777/devices/id/{device id}](http://localhost:7777/devices/id/100)
 
@@ -57,7 +66,7 @@ where 100 is device id.
 }
 ```
 
-##3. Get device by IP Address.
+##2.2. Get device by IP Address.
 ####  PROTOCOL: GET
 [http://localhost:7777/devices/ip/{ip address}](http://localhost:7777/devices/ip/10.20.30.48)
 
@@ -85,7 +94,7 @@ where 10.20.30.48 is device ip address.
 ```
 
 
-##4. Get device by name.
+##2.3. Get device by name.
 ####  PROTOCOL: GET
 [http://localhost:7777/devices/name/{device name}](http://localhost:7777/devices/name/as-800)
 
@@ -114,7 +123,7 @@ where as-800 is device name.
 
 # Atrinet REST Link API
 
-##1. Get list of all links.
+##3. Get list of all links.
 ####  PROTOCOL: GET
 [http://localhost:7777/links/list](http://localhost:7777/links/list)
 
@@ -139,7 +148,7 @@ where as-800 is device name.
 ]
 ```
 
-##2. Get link by id.
+##3.1. Get link by id.
 ####  PROTOCOL: GET
 [http://localhost:7777/links/id/{device id}](http://localhost:7777/links/id/100)
 
@@ -159,7 +168,7 @@ where 100 is link id.
 }
 ```
 
-##3. Get link by IP Address.
+##3.2. Get link by IP Address.
 ####  PROTOCOL: GET
 [http://localhost:7777/links/ip/{ip address}](http://localhost:7777/links/ip/10.20.30.48)
 
@@ -170,7 +179,7 @@ where 10.20.30.48 is link ip address.
 
 
 
-##4. Get link by name.
+##3.3. Get link by name.
 ####  PROTOCOL: GET
 [http://localhost:7777/links/name/{device name}](http://localhost:7777/links/name/as-800)
 
@@ -181,7 +190,7 @@ where as-800 is link name.
 
 # Atrinet REST Service API
 
-##1. Get list of all services.
+##4. Get list of all services.
 ####  PROTOCOL: GET
 [http://localhost:7777/services/list](http://localhost:7777/services/list)
 
@@ -212,7 +221,7 @@ where as-800 is link name.
 ]
 ```
 
-##2. Get services by id.
+##4.1. Get services by id.
 ####  PROTOCOL: GET
 [http://localhost:7777/services/id/{services id}](http://localhost:7777/services/id/100)
 
@@ -237,7 +246,7 @@ where 10003 is service id.
 
 
 
-##3. Get service by external id.
+##4.2. Get service by external id.
 ####  PROTOCOL: GET
 [http://localhost:7777/services/external/id/{serviceExternalId}](http://localhost:7777/services/external/id/100)
 
@@ -246,7 +255,7 @@ Example http://localhost:7777/services/external/id/10002
 where 10002 is service external id.
 ```
 
-##4. Get service by description.
+##4.3. Get service by description.
 ####  PROTOCOL: GET
 [http://localhost:7777/services/description/{description}](http://localhost:7777/services/description/xxx)
 
@@ -255,7 +264,7 @@ Example http://localhost:7777/services/description/xxx
 where xxx is service description.
 ```
 
-##5. Get service by order name.
+##4.4. Get service by order name.
 ####  PROTOCOL: GET
 [http://localhost:7777/services/order/name/{orderName}](http://localhost:7777/services/order/name/xxx)
 
@@ -264,7 +273,7 @@ Example http://localhost:7777/services/order/name/xxx
 where xxx is service order name.
 ```
 
-##6. Get service by operator name.
+##4.5. Get service by operator name.
 ####  PROTOCOL: GET
 [http://localhost:7777/services/operator/name/{operatorName}](http://localhost:7777/services/operator/name/xxx)
 

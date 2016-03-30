@@ -6,7 +6,7 @@ import lombok.Data;
  * Created by John on 9/5/2015.
  */
 @Data
-public class Device {
+public class EdgeDevice {
 
     private Integer id;
     private String status;
