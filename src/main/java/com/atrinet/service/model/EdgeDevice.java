@@ -18,4 +18,6 @@ public class EdgeDevice {
     private String swVersion;
     private String hwVersion;
     private String sysOID;
+    private Integer userPortId;
+    private Integer networkPortId;
 }

@@ -2,6 +2,7 @@ package com.atrinet.service;
 
 import com.atrinet.api.YP;
 import com.atrinet.model.generic.device.dto.GenericDeviceDto;
+import com.atrinet.model.generic.device.dto.PortDto;
 import com.atrinet.model.services.dto.EdgeDeviceDto;
 import com.atrinet.service.model.Device;
 import com.atrinet.service.model.EdgeDevice;
@@ -107,6 +108,8 @@ public class DeviceManager {
         device.setSysOID(deviceDto.getDevice().getSysOID());
         device.setSwVersion(deviceDto.getDevice().getSwVersion());
         device.setStatus(deviceDto.getDevice().getExtStatus().name());
+        device.setUserPortId(deviceDto.getUserPortId());
+        device.setNetworkPortId(deviceDto.getNetworkPortId());
 
         return device;
     }
