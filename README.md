@@ -92,13 +92,45 @@ where as-800 is device name.
 ####  PROTOCOL: GET
 [http://localhost:7777/links/list](http://localhost:7777/links/list)
 
+```
+[
+   {
+      "id": 169
+      "name": "10.220.152.90:TenGigE 1/9/1-10.220.152.90:TenGigE 1/19/1"
+      "ipAddress": null
+      "portId1": 129
+      "portId2": 136
+      "status": "TOPO_CREATED"
+   },
+   {
+   "id": 169
+   "name": "10.220.152.90:TenGigE 1/9/1-10.220.152.90:TenGigE 1/19/1"
+   "ipAddress": null
+   "portId1": 129
+   "portId2": 136
+   "status": "TOPO_CREATED"
+   }
+]
+```
+
 ##2. Get link by id.
 ####  PROTOCOL: GET
 [http://localhost:7777/links/id/{device id}](http://localhost:7777/links/id/100)
 
 ```
-Example http://localhost:7777/links/id/100
+Example http://localhost:7777/links/id/169
 where 100 is link id.
+```
+
+```
+ {
+    "id": 169
+    "name": "10.220.152.90:TenGigE 1/9/1-10.220.152.90:TenGigE 1/19/1"
+    "ipAddress": null
+    "portId1": 129
+    "portId2": 136
+    "status": "TOPO_CREATED"
+}
 ```
 
 ##3. Get link by IP Address.
